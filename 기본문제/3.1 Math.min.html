@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = Math.min(...arr);
+        // 안에 배열을 그대로 넣으면
+        // Math.min(arr)은 작동하지 않음 스프레드연산자 써야함
+        // Math.min(arr[0],arr[1],arr[2],arr[3] .... )
+
+        // Math.min.apply(null,arr);
+        // 이때 null부분이 객체넘기는부분 이건 스프레드 연산자안써도됨
+        return answer;
+      }
+
+      let arr = [5, 7, 3, 2, 9, 11];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

@@ -8,6 +8,11 @@
       function solution(n) {
         let answer;
         answer = Math.ceil(n / 12); //나머지가있으면 자리를 올림
+        //나머지가있어도 무시하는건 Math.floor(2.222) === 2
+        // 반올림은 Math.round(2.6) === 3
+        // 제곱근은 Math.sqrt(16) === 4
+        // 최소값 Math.min(3, 2, 4) ===2
+
         return answer;
       }
 
