@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, t) {
+        let answer = 0;
+        for (let x of s) {
+          if (x === t) answer++;
+        }
+        return answer;
+      }
+
+      let str = "COMPUTERPROGRAMMING";
+      console.log(solution(str, "R"));
+    </script>
+  </body>
+</html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, t) {
+        let answer = s.split(t).length;
+        //split 해당 문자 기준으로 앞뒤 잘라서 구분시켜 배열만듬
+        //그러면 구분자가 3개일경우 4개의 칸이있는 배열이생기므로
+        // 결과값에 -1해준다
+        //해당 구분자가 마지막에있을경우 빈문자열"" 반환
+        return answer - 1;
+      }
+
+      let str = "COMPUTERPROGRAMMING";
+      console.log(solution(str, "R"));
+    </script>
+  </body>
+</html>

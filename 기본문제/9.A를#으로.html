@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "";
+        for (let x of s) {
+          if (x == "A") answer += "#";
+          else answer += x;
+        }
+        return answer;
+      }
+
+      let str = "BANANA";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = s; //배열은 이런식이면 주소참조인데 , 스트링은 값이 복사됨 ,즉 깊은복사됨
+        answer = answer.replace(/A/g, "#"); //g안쓰면 한번만바꿈 g쓰면글로벌 전체 다바꿈
+        return answer;
+      }
+
+      let str = "BANANA";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
