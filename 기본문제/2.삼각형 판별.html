@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(a, b, c) {
+        let answer = "YES",
+          max;
+        let tot = a + b + c;
+        if (a > b) max = a;
+        else max = b;
+        if (c > max) max = c;
+        if (tot - max <= max) answer = "NO";
+        return answer;
+      }
+      //두변의 길이의합이 가장큰 길이의 변보다 커야함
+
+      console.log(solution(13, 33, 17));
+    </script>
+  </body>
+</html>
