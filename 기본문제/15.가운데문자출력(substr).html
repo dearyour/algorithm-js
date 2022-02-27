@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        let mid = Math.floor(s.length / 2);
+        if (s.length % 2 === 1) answer = s.substring(mid, mid + 1);
+        ////ex) s.substr(2,4) 이건 위와다르게 2번 인덱스부터 4개를 뽑아내라는 뜻
+        else answer = s.substring(mid - 1, mid + 1);
+        //if(s.length%2===1) answer=s.substr(mid, 1);
+        //else answer=s.substr(mid-1, 2);
+        return answer;
+      }
+      console.log(solution("study"));
+    </script>
+  </body>
+</html>
