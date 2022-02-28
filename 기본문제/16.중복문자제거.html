@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "";
+        //console.log(s.indexOf("K"));
+        for (let i = 0; i < s.length; i++) {
+          //console.log(s[i], i, s.indexOf(s[i]));
+          if (s.indexOf(s[i]) === i) answer += s[i];
+          //indexOf 가장 처음으로 발견된 지점 인덱스 반환
+          // indexOf("k",1) 이건 두번쨰로 발견된 k 지점의 인덱스 반환 없으면 -1반환
+          //console.log(s[i],i, s.indexOf(s[i]) = 배열값,인덱스위치 , 최초발견된인덱스위치
+          //최초발견된 인덱스위치랑 자기인덱스랑 일치하는값만 ans에 넣으면 중복된값들은 들어가지않는다
+
+          //특정 중복되는 갯수찾을땐
+          //let answer =0;
+          //let pos = s.indexOf('k');
+          //while(pos!==-1){ //k값못찾으면 -1 반환
+          //answer++;
+          // pos=s.indexOf('k', pos+1) //찾은위치 뒷편부터 다시 중복문자찾아라
+          // }
+        }
+        return answer;
+      }
+      console.log(solution("ksekkset"));
+    </script>
+  </body>
+</html>

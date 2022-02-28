@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        //console.log(s.indexOf("time"));
+        answer = s.filter(function (v, i) {
+          //필터의첫번째인자는 무조건콜백함수
+          return s.indexOf(v) === i;
+          // 필터함수는 콜백함수의 참이 된 v값만 배열로 다시만들어 반환
+          //해당 처음만난 인덱스위치랑 인덱스위치가 같은 v값만 배열 반환
+        });
+        return answer;
+      }
+      let str = ["good", "time", "good", "time", "student"];
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
