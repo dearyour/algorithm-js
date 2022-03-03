@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        let answer = "";
+        for (let x of str) {
+          if (!isNaN(x)) answer += x;
+          // isNaN 이것은 문자다
+          //숫자가 아닌게 !아니라면 = 숫자라면 x에넣어준다
+          //해당 문자열을 숫자화시켜서 리턴
+        }
+        return parseInt(answer);
+        //이떄 0208이면 앞의 0은 parseInt과정에서 날라가서 208만 남음
+      }
+
+      let str = "g0en2T0s8eSoft";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
