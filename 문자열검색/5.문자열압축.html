@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "";
+        let cnt = 1; //처음cnt는 무조건 1
+        s = s + " ";
+        for (let i = 0; i < s.length - 1; i++) {
+          if (s[i] === s[i + 1]) cnt++;
+          //지금문자와 다음문자가같으면 cnt를++   //cnt값만더하고 다음 문자로 포인터이동
+          else {
+            answer += s[i]; //지금문자와 다음문자가 다르면 해당문자 answer에삽입 //이때 다음문자를 넣는게아니라 지금문자를넣음
+            if (cnt > 1) answer += String(cnt); // 그리고 cnt가 1이상이면 ans에 지금문자넣은거뒤에 cnt문자열화해서 더해줌
+            cnt = 1; // cnt가 1이상이 아니면 숫자를 포함시킬필요없으니 cnt를 1로 초기화시킨후 다음문자로 넘어감
+          }
+        }
+        return answer;
+      }
+
+      let str = "KKHSSSSSSSE";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
