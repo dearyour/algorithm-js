@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function isPrime(num) {
+        if (num === 1) return false; //1은 소수아님
+        for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
+          //16은 1x16 , 2x 8 , 4x4 ,8x2, 16x1   뒤에2개는 앞에꺼 자리수만바꾼거임
+          // 1과 자기자신빼고 어떤수의 약수의 가장큰값은 절반임 // <= 표함된상태
+          if (num % i === 0) return false;
+          // i 가 자기자신은 1과 자기자신은포함되지않은값이니 나눠진다면 false 소수가아님
+        }
+        return true;
+        //발견이 안되야 true
+      }
+      function solution(arr) {
+        let answer = [];
+        for (let x of arr) {
+          let res = 0;
+          //x가 0되면 멈춤
+          while (x) {
+            //  아래 x==30에서 한바퀴돌고 다시 왔을땐 x가 0이됨
+            let t = x % 10;
+            //x=307이 703이되려면
+            //t가 7이 나옴
+            res = res * 10 + t;
+            // 0*10+7  = 7
+            //7*10+0  =70
+            x = parseInt(x / 10);
+            //x==30
+            //여기서 x를 0으로 만들어서 탈출
+            //x==3 , 그후 x==0으로됨
+          }
+          if (isPrime(res))
+            //res가 소수면
+            answer.push(res);
+        }
+        return answer;
+      }
+
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function isPrime(num) {
+        if (num === 1) return false;
+        for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+      function solution(arr) {
+        let answer = [];
+        for (let x of arr) {
+          let res = Number(x.toString().split("").reverse().join(""));
+          //split 한 인덱스안에 배열을 스트링화해서 숫자한칸한칸 잘라서 순서바꾸고 다시 합침join
+          // Number까지해줘야 리버스한 맨앞의 숫자 0 을 날림
+          if (isPrime(res)) answer.push(res);
+        }
+        return answer;
+      }
+
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
