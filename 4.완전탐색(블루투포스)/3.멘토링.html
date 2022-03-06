@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(test) {
+        let answer = 0;
+        let tmp = [];
+        m = test.length; // 테스트횟수
+        n = test[0].length; //학생수
+        for (let i = 1; i <= n; i++) {
+          for (let j = 1; j <= n; j++) {
+            //i 멘토 , j 는 멘티
+            // 멘토i 점수가 멘티j 점수보다 커야함
+            // i 1234 학생과 j 1234 학생의 경우의수를 구한것 [i,j]
+            let cnt = 0; //테스트 들어가기전에 cnt 초기화
+            for (let k = 0; k < m; k++) {
+              //테스트횟수 3바퀴
+              //각각의 테스트마다 i는몇번째 j는 몇번째인지 확인
+              //보편적인 입력받은 배열 훑는다고 생각하셈 [입력받은배열이 userID]
+
+              let pi = (pj = 0);
+              for (let s = 0; s < n; s++) {
+                //s 1,2,3,4 인덱스가 등수
+                // userId 인 i 학생이 훑은배열속에서 그학생숫자 찾으면 pi값에 등수[인덱스]를 넣어줘
+                // userId 가 j 학생이 훑은배열속에서 그학생숫자 찾으면 pj값에 등수[인덱스]를 넣어줘
+                if (test[k][s] === i) pi = s;
+                //test k번째 테스트의 s 위치에 i라는 학생이 있다면 i라는학생의 등수는 s이다.
+                if (test[k][s] === j) pj = s;
+                // [i,j]=[3,1] 인 경우의수 쌍에서
+                //첫번쨰 테스트케이스횟수에서 pi[0인덱스]는 1등[2인덱스] pj=3등
+              }
+              if (pi < pj) cnt++;
+              // 숫자값이 더 클수록 등수가 낮음,
+            }
+            if (cnt === m) {
+              tmp.push([i, j]);
+              answer++;
+            }
+            //해당 테스트횟수 행의수와 cnt의 숫자가 똑같을경우[모든테스트 통과한경우]
+            // 이때만 멘토멘티 등록가능
+          }
+        }
+        console.log(tmp);
+        return answer;
+      }
+
+      let arr = [
+        [3, 4, 1, 2],
+        [4, 3, 2, 1],
+        [3, 1, 4, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
