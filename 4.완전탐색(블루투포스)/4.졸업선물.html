@@ -22,7 +22,7 @@
       function solution(m, product) {
         let answer = 0;
         let n = product.length; //상품수
-        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1])); //내림차순으로 소트
+        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1])); //작은것부터 큰거로 오름차순으로 소트
         // a가 더크면 양수, b가 더 크면 음수
         //a와 b를 비교해서 a가더 작으면 a를 앞으로보냄 , 둘다같아서 0 을반환하면 가만히있음
         //a가 더 크면 b가 더 작은거니까 b를 앞으로 보냄
