@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      //EXAM arr.sort 본문제는 아래, 이건 예시, sort는 배열 자체가 변경됨
+      let arr = [27, 8, 5, 13];
+      arr.sort((a, b) => {
+        console.log(a, b);
+        // 8 27
+        // 5 8
+        // 13 5
+        // 13 8
+        // 13 27
+        return a - b;
+      });
+      consol.log(arr);
+      // [5,8,13,27]
+
+      function solution(m, product) {
+        let answer = 0;
+        let n = product.length; //상품수
+        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1])); //내림차순으로 소트
+        // a가 더크면 양수, b가 더 크면 음수
+        //a와 b를 비교해서 a가더 작으면 a를 앞으로보냄 , 둘다같아서 0 을반환하면 가만히있음
+        //a가 더 크면 b가 더 작은거니까 b를 앞으로 보냄
+        for (let i = 0; i < n; i++) {
+          let money = m - (product[i][0] / 2 + product[i][1]); //m 상품총가격 /0번째인덱스가 상품가격, 1번째는 배송비
+          let cnt = 1; //구매가능한 사람수
+          for (let j = 0; j < n; j++) {
+            if (j !== i && product[j][0] + product[j][1] > money) break; // i는할인된 상품이니까 생략 money는 잔여금액
+            if (j !== i && product[j][0] + product[j][1] <= money) {
+              money -= product[j][0] + product[j][1]; //구매한금액에서 남은예산 빼준다
+              cnt++;
+            }
+          }
+          answer = Math.max(answer, cnt);
+        }
+        return answer;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ];
+      console.log(solution(28, arr));
+    </script>
+  </body>
+</html>
