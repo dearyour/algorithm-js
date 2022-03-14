@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, arr) {
+        //배열 속 연속된 값이 m 을 만족하는 갯수
+        //m 목표값
+        //rt는 먼저가서 계속 더해주고
+        //lt는 rt 따라가면서 계속 빼준다
+        let answer = 0,
+          lt = 0,
+          sum = 0;
+        for (let rt = 0; rt < arr.length; rt++) {
+          sum += arr[rt];
+          // 0부터 계속더해나감
+          if (sum === m) answer++;
+          //목표값 도달하면 정답갯수++
+          while (sum >= m) {
+            sum -= arr[lt++];
+            //목표값보다 더한값이 더크면 현재값을 왼쪽lt포인터 배열값에서 빼줌
+            if (sum === m) answer++;
+            //뺀값이 목표값에 도달하면 정답갯수++
+            //그후 lt를 움직여서 값을 다시빼줌 , 실컷빼줬는데 rt를 움직여서 값을 더하면 의미없으니까
+          }
+        }
+        return answer;
+      }
+
+      let a = [1, 2, 1, 3, 1, 1, 1, 2];
+      console.log(solution(6, a));
+    </script>
+  </body>
+</html>
