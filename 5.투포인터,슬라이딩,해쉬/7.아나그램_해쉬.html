@@ -9,7 +9,6 @@
         //두 문자열의 알파벳 순서는 달라도 그 구성이[갯수] 일치하면 두 단어는 아나그램
         let answer = "YES";
         let sH = new Map();
-
         for (let x of str1) {
           if (sH.has(x)) sH.set(x, sH.get(x) + 1);
           // 문자열에대한 해쉬가 그 키를 가지고있음 값을 +1해주고
