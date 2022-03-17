@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str1, str2) {
+        //두 문자열의 알파벳 순서는 달라도 그 구성이[갯수] 일치하면 두 단어는 아나그램
+        let answer = "YES";
+        let sH = new Map();
+        for (let x of str1) {
+          if (sH.has(x)) sH.set(x, sH.get(x) + 1);
+          // 문자열에대한 해쉬가 그 키를 가지고있음 값을 +1해주고
+          else sH.set(x, 1);
+          // 문자열에대한 해쉬가 그 키가 없으면 새롭게생성
+        }
+        for (let x of str2) {
+          //2번째 문자열 배열 순회인데 if에서 첫번쨰 배열순회의 결과맵을 비교로 정답판단
+          if (!sH.has(x) || sH.get(x) == 0) return "NO";
+          // 첫번째 문자열의 해쉬 맵에
+          //두번째 문자열의 키가 존재하지 않거나 또는 해당 문자를 불러올수없다면
+          // 둘은 아나그램 아님 return No 출력
+          sH.set(x, sH.get(x) - 1);
+          // 만약 그 키가 존재한다면 그 키에 해당하는 값을 하나씩 빼준다 .
+          //여기서 sh.get(x)-1에서 해당 get값이 0으로 딱 떨어짐
+          //근데 만약 for문이 한바퀴돌고 위에 if에서 sH.get(x)==0에 걸린다면
+          // x 키값이 존재하는데 불구하고 이전 문자열1에서 나온 해쉬맵에서는 존재하지않으니
+          // 2번쨰 문자열 x의 키값이 /첫번째 문자열보다 한개 더 많다
+          //그러므로 아나그램이 아니다.
+        }
+        return answer;
+      }
+
+      let a = "AbaAeCe";
+      let b = "baeeACA";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
