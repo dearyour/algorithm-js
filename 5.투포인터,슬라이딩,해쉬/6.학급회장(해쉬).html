@@ -1,0 +1,37 @@
+2
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        let sH = new Map();
+        //Map()  sh는 key와 value로 이루어짐,
+        //s 문자열 받는것을 키로사용
+        for (let x of s) {
+          //x는 키key
+          if (sH.has(x)) sH.set(x, sH.get(x) + 1);
+          //해쉬 그 x키가 값이 존재한다면 해당 x키를 sh.get(x)값을 가져와서 거기다 +1 을 해준다
+          else sH.set(x, 1);
+          //sh.set('b',1) 해당 B문자의 키값을 1 value로 셋팅
+        }
+        let max = Number.MIN_SAFE_INTEGER;
+        for (let [key, val] of sH) {
+          //그렇게 저장된 해쉬값을 키값을 for문돌린다
+          if (val > max) {
+            max = val;
+            //지금값이 맥스면, 최대값에 넣어주고 키값을 정답으로 반환
+            answer = key;
+          }
+        }
+        return answer;
+      }
+
+      let str = "BACBACCACCBDEDE";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
