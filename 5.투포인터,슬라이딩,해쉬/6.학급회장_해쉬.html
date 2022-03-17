@@ -9,6 +9,7 @@
       function solution(s) {
         let answer;
         let sH = new Map();
+        d;
         //Map()  sh는 key와 value로 이루어짐,
         //s 문자열 받는것을 키로사용
         for (let x of s) {
@@ -18,7 +19,6 @@
           else sH.set(x, 1);
           //sh.set('b',1) 해당 B문자의 키값을 1 value로 셋팅
         }
-
         let max = Number.MIN_SAFE_INTEGER;
         for (let [key, val] of sH) {
           //그렇게 저장된 해쉬값을 키값을 for문돌린다
