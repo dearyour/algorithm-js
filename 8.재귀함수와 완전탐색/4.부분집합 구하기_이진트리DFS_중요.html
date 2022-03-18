@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        // 경우의수 2^n
+        let answer = [];
+        let ch = Array.from({ length: n + 1 }, () => 0);
+        // 방문 체크배열 n번까지 인덱스생겨야하기때문에 n+1 길이, 0으로 초기화
+        function DFS(L) {
+          //자기를 포함한 외부함수의 지역변수 접근가능
+          if (L === n + 1) {
+            //L이 4면 탈출
+            let tmp = "";
+            for (let i = 1; i <= n; i++) {
+              if (ch[i] === 1) tmp += i + " ";
+              //방문한곳이면 tmp에 저자
+            }
+            // console.log(tmp);
+            if (tmp.length > 0) answer.push(tmp.trim());
+            //마지막공백 trim으로 자름 , 공집합 포함안되게하려고 length>0으로 없앰
+          } else {
+            // 트리계층을 파고들어감
+            // 왼쪽자식노드로 갈땐 방문 했을때, 오른쪽자식노드로 갈떈 방문 안했을 경우
+            // 체크한거랑 체크안한거 구분
+            // 이때 트리계층 DFS[숫자] 높이는데 숫자가 if에 만족하면 for문으로 체크된 배열 출력
+
+            ch[L] = 1;
+            //dfs처음 소환한 인자값 위치 포함 할떄 체크1
+            DFS(L + 1);
+            //왼쪽 자식노드로 보내는것 , 트리계층을 파고들어감
+            //여기서 L이 4만족하면 위에 if에서 정답넣어주고 다시 복귀주소인 이부분으로 돌아와서
+            // 아래에 방문하지않았을경우 0 으로 내려가서 트리가 오른쪽 자식노드로 가는 것
+            ch[L] = 0;
+            //dfs 처음 소환한 인자값 위치 포함 안할떄 , 체크한거랑 체크안한거 구분
+            DFS(L + 1);
+            //오른쪽 자식노드로 보내는것
+          }
+        }
+        DFS(1);
+        return answer;
+      }
+
+      console.log(solution(3));
+    </script>
+  </body>
+</html>
