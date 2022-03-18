@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = "";
+        function DFS(n) {
+          if (n === 0) return;
+          else {
+            DFS(parseInt(n / 2)); //몫을 다시 DFS에 삽입
+            answer += String(n % 2); // 나머지를 문자열화해서 1011 이렇게 하나씩추가
+            // DFS 아래에 저장or콘솔해야 가장 나중에부른 재귀 연산값순서로 나옴
+            // DFS 위에넣는다면 가장 빠르게부른 재귀 연산값순서로 나옴
+          }
+        }
+        DFS(n);
+        return answer;
+      }
+
+      console.log(solution(11));
+    </script>
+  </body>
+</html>
