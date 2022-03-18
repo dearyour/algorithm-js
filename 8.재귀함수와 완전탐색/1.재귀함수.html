@@ -6,6 +6,10 @@
   <body>
     <script>
       function solution(n) {
+        //복귀주소에 대한 이해 너무중요
+        //함수 실행중 재귀함수 부르면 아래줄 실행안하고 다시 함수를실행
+        // 그 다시 실행된 함수에서 할일이 다끝났다면
+        // 원래 재귀가 불려졌던 함수 다음줄부터 실행
         function DFS(L) {
           if (L == 0) return;
           else {

@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = "NO",
+          flag = 0;
+        let total = arr.reduce((a, b) => a + b, 0); //a에다가 b를더함 초기화 값은 0 ,, b가 1,2,3,4 움직임
+        //해당 배열의 전체 값을 구함
+        let n = arr.length;
+        // 트리 레벨,깊이 가 배열의 길이와 일치, 이건 0번 인덱스부터 쓰니까 n+1 안해도 됨
+        //6개의 배열일경우 0인덱스부터 5인덱스까지 탐색 후 배열초과인덱스인 L이 6이 될경우 탈출
+        //즉 배열의 길이였을 경우 탈출
+        function DFS(L, sum) {
+          //부분집합 만듬 하나의 부분집합을 구하면 나머지는 구하지않아도 서로소
+          // 한 부분집합의 전체값이 다른 부분집합의 전체값과 같으면 YES
+          if (flag) return;
+          if (L === n) {
+            if (total - sum === sum) {
+              answer = "YES";
+              flag = 1;
+              //flag는 이미 부분집합 있다고 발견되면 더이상 뒤에 찾지않겠다는 메모이제이션
+              //flag=1 인순간 아래에 재귀함수로 다시호출된다해도 어차피 DFS 타고들어오는 순간
+              //flag가 전역으로 1이 됨으로써 DFS함수 첫째줄에서 다 리턴되버림
+            }
+          } else {
+            DFS(L + 1, sum + arr[L]);
+            //부분집합 선택, 레벨증가, sum값에 현재 배열값 더함
+            //왼쪽 자식노드로 감 [그 원소 선택함]
+            DFS(L + 1, sum);
+            //부분집합 선택안함, 레벨증가, sum값은 부분집합 선택안했으니 배열 안 더하고 그대로
+            //오른쪽 자식노드로 감 [그 원소 선택하지않음]
+          }
+        }
+        DFS(0, 0);
+        return answer;
+      }
+
+      let arr = [1, 3, 5, 6, 7, 10];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

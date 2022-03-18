@@ -20,7 +20,7 @@
           }
         }
         //set tmp는 sort함수없으니까 배열을 만들어서 sort
-        let a = Array.from(tmp).sort((a, b) => b - a); //큰거부터 작은거로 내림차순 sort
+        let a = Array.from(tmp).sort((a, b) => b - a); //큰거부터 작은거로 내림차순 sort, a-b는 오름차순 1,2,3,4
         answer = a[k - 1]; // 정렬된 배열이 0부터 시작해서 0,1,2 즉 index 2가 3번째니까 k-1로 해준다
         return answer;
       }
