@@ -6,7 +6,7 @@
   <body>
     <script>
       function solution(m, ps, pt) {
-        //이진트리의 부분집합 선택하나 안선택하나의 최대점수값 찾기
+        //이진트리의 부분집합 선택하나 안 선택하나의 최대점수값 찾기
         let answer = Number.MIN_SAFE_INTEGER; //제한시간 내의 최대점수 구해야함
         let n = ps.length;
         function DFS(L, sum, time) {
@@ -19,7 +19,7 @@
             answer = Math.max(answer, sum);
           } else {
             DFS(L + 1, sum + ps[L], time + pt[L]); //for문에서 [3번째,연산식]
-            // 그 점수를 푼다면 그 점수랑 시간을 누적 sum과 time 에 저장
+            //해당 그 문제를 푼다면 그 점수랑 시간을 누적 sum과 time 에 저장
             DFS(L + 1, sum, time);
             //해당 그 문제를 안풀었을때
           }
@@ -34,7 +34,7 @@
       console.log(solution(20, ps, pt)); //제한시간 20분
 
       //n이 지금 5개라 가능한데
-      // 15이상 커지면 재귀로 못품 DP동적계획법으로 풀어야함
+      // 16이상 커지면 재귀로 못품 DP동적계획법으로 풀어야함
     </script>
   </body>
 </html>
