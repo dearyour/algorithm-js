@@ -8,11 +8,16 @@
       function solution(n, m) {
         let answer = [];
         let tmp = Array.from({ length: m }, () => 0);
+        //처음엔 undefined되있음 0으로초기화
         //뽑는 갯수 m=2 만큼 방문 체크하는 tmp 배열
         function DFS(L) {
+          //for문은 뽑는횟수 3개면 3중for문 4개면 4중for문써야함
+          // 재귀는 코드수정 안해도 뽑는횟수 수정가능
           if (L === m) {
             //m 2번뽑으면 임시저장배열tmp를 정답배열에 push
             answer.push(tmp.slice());
+            //단순 tmp만 넣으면 얕은복사라 마지막 부분 3.3만 나옴
+            // slice로 새로운 배열을 만들어 푸쉬해준다
           } else {
             for (let i = 1; i <= n; i++) {
               //선택할수있는 n의 갯수만큼 돌아감
