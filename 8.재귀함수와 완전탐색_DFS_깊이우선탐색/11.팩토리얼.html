@@ -9,7 +9,7 @@
         let answer;
         function DFS(n) {
           if (n === 1) return 1;
-          //1이 되는순간 return 되서 else 부분 안타니까
+          // 1이 되는순간 return 되서 else 부분 안타니까
           // 재귀 DFS 를 타지않는다
           else return n * DFS(n - 1);
         }

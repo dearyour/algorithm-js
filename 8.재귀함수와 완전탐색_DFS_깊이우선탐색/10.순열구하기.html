@@ -15,14 +15,14 @@
         let tmp = Array.from({ length: m }, () => 0);
         //뽑은거 넣는 배열
         function DFS(L) {
-          //재귀 DFL[L]이 1중for문 인덱스 역할
+          // 재귀 DFL[L]이 1중for문 인덱스 역할
           // 재귀안에 for가 2중 for문 인덱스 역할
           if (L === m) {
             // m개 다뽑으면 엔서에 tmp배열 넣고 29번째줄
             answer.push(tmp.slice()); //깊은복사위해 slice
           } else {
             for (let i = 0; i < n; i++) {
-              //방문했다면 if문 건너띄고 다음인덱스 배열탐색
+              // 방문했다면 if문 건너띄고 다음인덱스 배열탐색
               if (ch[i] === 0) {
                 //방문하지않았다면
                 ch[i] = 1; // 그인덱스 체크방문
