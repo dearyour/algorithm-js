@@ -9,6 +9,7 @@
         let answer = [];
         let tmp = Array.from({ length: m }, () => 0);
         function DFS(L, s) {
+          //s는 스타트넘버
           if (L === m) {
             answer.push(tmp.slice());
           } else {
