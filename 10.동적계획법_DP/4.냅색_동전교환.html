@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, coin) {
+        // 동전 종류100개 거슬러줄 금액이 100,000이면
+        //DFS 재귀가 아니라 DP로 풀어야 한다고 생각해야함
+        let answer = 0;
+        let dy = Array.from({ length: m + 1 }, () => 1000); //넉넉하게 초기화
+        //거슬러줄금액 +1 만큼 배열길이 정함
+        // dy[i] 는 i금액을 거슬러주는데 사용되는 최소 동전갯수
+        dy[0] = 0;
+        for (let i = 0; i < arr.length; i++) {
+          //i범위는 동전 갯수만큼
+          for (let j = coin[i]; j <= m; j++) {
+            //j는 동전값부터 거슬러줄금액까지 1~15, 2~15, 5~15
+            dy[j] = Math.min(dy[j], dy[j - coin[i]] + 1);
+            // 현재 탐색중인 j값에 동전숫자를 빼주면 전에구한 메모이제이션 최소갯수 구할수있음
+            // 그 갯수에 +1 [현재동전사용]을 해주니까 최소로 구하는 값이 생기는것
+            // dy[j]는 전에 동전종류 값 기록 ,
+            // 전 동전종류와 현 동전종류의 거슬러줄 갯수중 최소값 dy로 결정
+            //dy[1-1]의 동전을 거슬러줄 갯수는 0개니까 +1
+            //dy[7-5]의 동전을 거슬러줄 갯수는 5의갯수1 + 2의갯수1 = 2
+            // 바로 직전까지의 거슬러줄 갯수 + 1 = 현재갯수
+          }
+          console.log(dy);
+        }
+        answer = dy[m]; //마지막 목표금액 15 금액에 대한 dp값이 정답
+        return answer;
+      }
+
+      let arr = [1, 2, 5]; //동전 종류
+      console.log(solution(15, arr)); //거슬러줄 금액
+    </script>
+  </body>
+</html>
