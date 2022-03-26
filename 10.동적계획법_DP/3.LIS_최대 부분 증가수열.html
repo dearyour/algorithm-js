@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = 0;
+        let dy = Array.from({ length: arr.length }, () => 0);
+        //arr의 i번째 index 숫자의 값이 증가수열의 마지막 값일때
+        // 증가수열의 길이값이 들어감
+        dy[0] = 1;
+        for (let i = 1; i < arr.length; i++) {
+          let max = 0;
+          for (let j = i - 1; j >= 0; j--) {
+            if (arr[j] < arr[i] && dy[j] > max) {
+              // i 보다 더작은 j여야 증가수열가능
+              // j번째인덱스 숫자가 마지막항이면서 최대길이 저장되있음
+              // 역방향탐색중인 j값에서 젤큰거 max에 저장
+              max = dy[j]; //앞에있는 항에서 가장 긴 길이값
+            }
+          }
+          dy[i] = max + 1; //앞에있는 항에서 가장긴 길이값 + 1[현재 항]
+          //만약 맨앞숫자가 가장크면 max가 0이라서 1을 dy[1]에 대입
+          answer = Math.max(answer, dy[i]);
+        }
+        return answer;
+      }
+
+      let arr = [5, 3, 7, 8, 6, 2, 9, 4];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
