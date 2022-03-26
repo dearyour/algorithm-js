@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = 0;
+        let dy = Array.from({ length: n + 2 }, () => 0);
+        // dy[0]= 1;  만약 한번에 한번,두번,세번 까지 건너뛸수있다면
+        // 이렇게하고 dy[i-3] 까지 for문에 추가해주자
+        dy[1] = 1;
+        dy[2] = 2;
+        for (let i = 3; i <= n + 1; i++) {
+          dy[i] = dy[i - 2] + dy[i - 1];
+        }
+        answer = dy[n + 1]; // 마지막 돌다리가 n이고 건너는순간이 N+1임
+        return answer;
+      }
+
+      console.log(solution(7)); // 답34
+    </script>
+  </body>
+</html>
