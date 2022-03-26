@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(board) {
+        let answer = 0;
+        let n = board.length;
+        let dx = [-1, -1, 0, 1, 1, 1, 0, -1];
+        let dy = [0, 1, 1, 1, 0, -1, -1, -1];
+        let queue = [];
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            //BFS 시작
+            if (board[i][j] === 1) {
+              //찾은 지점이 섬인가?
+              board[i][j] = 0; // 방문
+              queue.push([i, j]); //좌표를 배열로 삽입
+              answer++;
+              while (queue.length) {
+                let x = queue.shift();
+                console.log(x);
+                for (let k = 0; k < 8; k++) {
+                  let nx = x[0] + dx[k];
+                  let ny = x[1] + dy[k];
+                  if (
+                    nx >= 0 &&
+                    nx < n &&
+                    ny >= 0 &&
+                    ny < n &&
+                    board[nx][ny] === 1
+                  ) {
+                    board[nx][ny] = 0; //큐에 넣기전에 0 으로 방문체크
+                    queue.push([nx, ny]);
+                  }
+                }
+              }
+              console.log("BFS end");
+            }
+            //BFS 끝
+          }
+        }
+        return answer;
+      }
+
+      let arr = [
+        [1, 1, 0, 0, 0, 1, 0],
+        [0, 1, 1, 0, 1, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 1, 1],
+        [1, 1, 0, 1, 1, 0, 0],
+        [1, 0, 0, 0, 1, 0, 0],
+        [1, 0, 1, 0, 1, 0, 0],
+      ];
+
+      console.log(solution(arr)); //0으로 감싸진 1의 뭉치갯수
+    </script>
+  </body>
+</html>

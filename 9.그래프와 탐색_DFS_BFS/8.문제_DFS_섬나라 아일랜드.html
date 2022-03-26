@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(board) {
+        let answer = 0;
+        let n = board.length;
+        let dx = [-1, -1, 0, 1, 1, 1, 0, -1];
+        let dy = [0, 1, 1, 1, 0, -1, -1, -1];
+        function DFS(x, y) {
+          board[x][y] = 0; //다시 못돌아가게 0으로바꿈
+          for (let k = 0; k < 8; k++) {
+            let nx = x + dx[k];
+            let ny = y + dy[k];
+            if (nx >= 0 && nx < n && ny >= 0 && ny < n && board[nx][ny] === 1) {
+              console.log(nx, ny); // DFS 순회 지점
+              DFS(nx, ny);
+            }
+          }
+        }
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            if (board[i][j] === 1) {
+              //섬발견
+              answer++;
+              console.log(i, j); //DFS 출발지점
+              DFS(i, j);
+              console.log("DFS end"); //DFS 끝지점
+            }
+          }
+        }
+        return answer;
+      }
+
+      let arr = [
+        [1, 1, 0, 0, 0, 1, 0],
+        [0, 1, 1, 0, 1, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 1, 1],
+        [1, 1, 0, 1, 1, 0, 0],
+        [1, 0, 0, 0, 1, 0, 0],
+        [1, 0, 1, 0, 1, 0, 0],
+      ];
+
+      console.log(solution(arr)); //0으로 뚤러싸인 1[대각선포함],  5개
+    </script>
+  </body>
+</html>
