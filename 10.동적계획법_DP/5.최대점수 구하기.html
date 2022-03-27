@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, arr) {
+        //동전교환때처럼 중복적용 불가
+        //중복적용 피하기 위해서 j값을 뒤에서부터 앞으로돈다
+        let answer = 0;
+        let dy = Array.from({ length: m + 1 }, () => 0); //주어진 시간만큼 배열생성
+        //dy[시간] 동안 얻을수있는 최대 점수를 배열값으로 기록
+        for (let i = 0; i < arr.length; i++) {
+          let ps = arr[i][0]; //획득 점수
+          let pt = arr[i][1]; //소요 시간
+          for (let j = m; j >= pt; j--) {
+            dy[j] = Math.max(dy[j], dy[j - pt] + ps);
+            //최대점수 구하기 라서 max ! 전에 동전교환은 최소갯수라 min 썼음
+          }
+        }
+        answer = dy[m];
+        return answer;
+      }
+      //[문제점수, 소요시간]
+      let arr = [
+        [10, 5],
+        [25, 12],
+        [15, 8],
+        [6, 3],
+        [7, 4],
+      ];
+      console.log(solution(20, arr)); //20분 주어짐
+    </script>
+  </body>
+</html>
