@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        //서로 인접한 두값 비교
+        let answer = arr;
+        //가장큰수가 가장 뒤로감
+        for (let i = 0; i < arr.length - 1; i++) {
+          //두개 비교하니까 바로앞뒤 비교라 아래에서 j+1 함으로 마지막 인덱스 하나는 안돔
+          for (let j = 0; j < arr.length - i - 1; j++) {
+            // i 가 커지는만큼 뒤에는 이미결정되서 뒤에값은 안돌아도되서 -i하는것
+            if (arr[j] > arr[j + 1]) {
+              //앞에게 더크면 교환
+              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+          }
+        }
+        return answer;
+      }
+
+      let arr = [13, 5, 11, 7, 23, 15];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
