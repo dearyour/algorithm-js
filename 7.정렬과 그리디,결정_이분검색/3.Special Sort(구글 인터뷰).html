@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = arr;
+        for (let i = 0; i < arr.length - 1; i++) {
+          for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > 0 && arr[j + 1] < 0) {
+              //앞에가 양수고 뒤에가 음수면 바꾸자
+              // 음수를 앞으로 보내고 양수를 뒤로 보내자
+              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+          }
+        }
+        return answer;
+      }
+
+      let arr = [1, 2, 3, -3, -2, 5, 6, -6];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = [];
+        for (let x of arr) {
+          if (x < 0) answer.push(x); //음수 먼저 푸쉬
+        }
+        for (let x of arr) {
+          if (x > 0) answer.push(x); //그 후 양수 푸쉬
+        }
+        return answer; //이렇게하면 순서를 변하지않고 음 양 정수값을 분류할수있음
+      }
+
+      let arr = [1, 2, 3, -3, -2, 5, 6, -6];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
