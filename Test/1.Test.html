@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, info) {
+        var answer = 0;
+        console.log(n);
+        console.log(info);
+        let ch = Array.from({ length: n + 1 }, () => {
+          0;
+        });
+        let sum = 0;
+
+        function DFS(start, end, dis) {
+          let tmp = 0;
+          if (start === n) {
+            return sum;
+          } else {
+            for (let i = 1; i <= ch.length; i++) {
+              if (ch === 0) {
+                ch[i] = 1;
+                tmp = info[start][2];
+
+                sum = Math.min(sum, tmp);
+                console.log(info);
+                DFS(start + 1, end, sum + dis);
+                ch[i] = 0;
+              }
+            }
+          }
+        }
+        DFS(0, 0, 0);
+
+        return answer;
+      }
+      console.log(solution(20, arr)); //20분 주어짐
+      //
+    </script>
+  </body>
+</html>
