@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = [];
+        let sortArr = arr.slice(); //깊은 복사 but 배열안에 배열이있으면 얕은복사되어버림
+        sortArr.sort((a, b) => a - b); //오름차순
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] !== sortArr[i]) answer.push(i + 1); //오름차순 배열과 기존배열 비교
+          // 키순서 번호는 1번부터라 인덱스+1 임
+        }
+        return answer;
+      }
+
+      let arr = [120, 125, 152, 130, 135, 135, 143, 127, 160];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
