@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(size, arr) {
+        //size 캐시메모리값
+        let answer = Array.from({ length: size }, () => 0); //캐시메모리
+        arr.forEach((x) => {
+          let pos = -1;
+          for (let i = 0; i < size; i++) if (x === answer[i]) pos = i; //배열이 캐시메모리에있다면
+          if (pos === -1) {
+            for (let i = size - 1; i >= 1; i--) {
+              //뒤에서부터 앞으로 한칸씩땡김
+              answer[i] = answer[i - 1]; //0 번인덱스값을 1번으로 옮김
+            }
+          } else {
+            for (let i = pos; i >= 1; i--) {
+              //3번째인덱스에 있는값이 추가된값이랑 동일하면
+              // 그 3번째인덱스 있는값부터 바로앞칸을 3번째인덱스로 옮김
+              //계속옮기다 0번째 인덱스 값에는 그 새로추가된 값을 넣어줌
+              //그러면 기존에 있던 동일한값은 사라지고 새로추가된값이 맨앞으로감
+              answer[i] = answer[i - 1];
+            }
+          }
+          answer[0] = x;
+        });
+
+        return answer;
+      }
+
+      let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+      console.log(solution(5, arr));
+    </script>
+  </body>
+</html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(size, arr) {
+        let answer = [];
+        arr.forEach((x) => {
+          let pos = -1;
+          for (let i = 0; i < size; i++) if (x === answer[i]) pos = i;
+          if (pos === -1) {
+            answer.unshift(x); // unshift 배열 맨앞 추가 //shift는 배열 맨앞 삭제
+            if (answer.length > size) answer.pop(); // 사이즈넘치면 맨뒤 인덱스값  팝한다
+          } else {
+            answer.splice(pos, 1); //pos 지점에서 히트난값을 지운다
+            answer.unshift(x); // push는 배열 맨뒤 추가 pop은 배열 맨뒤 삭제
+          }
+        });
+
+        return answer;
+      }
+
+      let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+      console.log(solution(5, arr));
+    </script>
+  </body>
+</html>
