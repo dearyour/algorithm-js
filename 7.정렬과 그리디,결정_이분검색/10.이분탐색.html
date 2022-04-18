@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(target, arr) {
+        //반땡후 다시 반땡안에서 찾기
+        //시간복잡도를 n에서 logn으로 낮출수있음
+        let answer;
+        arr.sort((a, b) => a - b);
+        let lt = 0,
+          rt = arr.length - 1;
+        while (lt <= rt) {
+          let mid = parseInt((lt + rt) / 2);
+          if (arr[mid] === target) {
+            answer = mid + 1;
+            break;
+          } else if (arr[mid] > target)
+            rt =
+              mid - 1; //미드가 타겟값 초과하면 가장 오른쪽값을 미드 전으로 옮김
+          else lt = mid + 1;
+        }
+
+        return answer;
+      }
+
+      let arr = [23, 87, 65, 12, 57, 32, 99, 81];
+      console.log(solution(32, arr));
+    </script>
+  </body>
+</html>
