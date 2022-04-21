@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        //여는괄호가 남았거나 닫는괄호가 남는다
+        // 그러면 펄스고 스택에 아무것도 존재하지않아야 트루다
+        let answer = "YES";
+        stack = [];
+        for (let x of s) {
+          if (x === "(") stack.push(x);
+          else {
+            if (stack.length === 0) return "NO";
+            //닫는괄호가 x로들어와서 빼려고 했지만
+            //스택길이값이 0이라면 펄스 출력
+            stack.pop();
+            //스택에 존재한다면 정상적으로 닫는괄호를  팝한다
+          }
+        }
+        if (stack.length > 0) return "NO";
+        // 최종적으로  여는괄호가 남아있는것이니 NO
+        return answer;
+      }
+
+      let a = "(()(()))(()";
+      console.log(solution(a));
+    </script>
+  </body>
+</html>
