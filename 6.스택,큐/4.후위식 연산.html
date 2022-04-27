@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        let stack = [];
+        for (let x of s) {
+          if (!isNaN(x)) stack.push(Number(x));
+          //숫자인것을 모두 푸쉬 , 스트링안에값이므로 나중연산을 위해 숫자화 시켜서 넣어준다
+          //isNaN 숫자가 아니면 참 , 숫자면 거짓
+          else {
+            //숫자가 아닌 연산자를 만나면 스택에서 숫자2개 빼서 조건에따라 더하고 뺀후 다시 스택에 푸쉬한다.
+            let rt = stack.pop(); //첫번쨰 숫자 팝한것이 오른쪽
+            let lt = stack.pop(); //두번쨰 숫자 팝한것이 왼쪽으로 가게
+            if (x === "+") stack.push(lt + rt);
+            else if (x === "-") stack.push(lt - rt);
+            else if (x === "*") stack.push(lt * rt);
+            else if (x === "/") stack.push(lt / rt);
+          }
+        }
+        answer = stack[0]; //스택의 첫번쨰 값 정답
+        return answer;
+      }
+
+      let str = "352+*9-";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
