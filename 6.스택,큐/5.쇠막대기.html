@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = 0;
+        let stack = [];
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === "(") stack.push("(");
+          else {
+            stack.pop(); //일단 ) 만나서 () 완성됬으니 팝한다
+            if (s[i - 1] === "(") answer += stack.length;
+            // )닫는괄호를 만났는데 바로앞이 ( 여는괄호라면 그것은 레이저 부분이므로
+            // 레이저를 하는순간 그 스택안의 막대기가 짤려서 조각 막대기가 되니 스택값을 누적더해준다
+            else answer++;
+            //바로앞이 (괄호가 아니라면 막대기의 끝이니 단순히 +1을 해준다.
+          }
+        }
+        return answer;
+      }
+
+      let a = "()(((()())(())()))(())";
+      console.log(solution(a));
+    </script>
+  </body>
+</html>
