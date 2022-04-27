@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, k) {
+        let answer;
+        let queue = Array.from({ length: n }, (v, i) => i + 1);
+        // [ 1, 2 ,3  ,4 ,5 ,6 7, 8 ]
+        while (queue.length) {
+          //큐의 길이값만큼 무한으로 돌린다
+          for (let i = 1; i < k; i++) queue.push(queue.shift());
+          //큐에 값을 빼서 다시 큐에 넣는다 .
+          queue.shift();
+          //하지만 k 번쨰 수는 그냥 꺼낸다 큐에다시 집어넣지 않는다
+          if (queue.length === 1) answer = queue.shift();
+          //최종적으로 큐에 마지막 하나가 남았다면 그 값을 답에 넣는다
+        }
+        return answer;
+      }
+
+      console.log(solution(8, 3));
+    </script>
+  </body>
+</html>
