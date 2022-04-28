@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(need, plan) {
+        let answer = "YES";
+        let queue = need.split("");
+        //  ["C","B","A"]
+        for (let x of plan) {
+          if (queue.includes(x)) {
+            //문자열복사된 큐에 원래문자열 x값이 포함되어있다면
+            if (x !== queue.shift()) return "NO";
+            // 큐의값을 뺏는데 그값이 x값이랑 같지않으면 NO 출력
+          }
+        }
+        if (queue.length > 0) return "NO";
+        //플랜을 다 돌았는데도 큐에값이 남아있다면 NO 출력
+        return answer;
+      }
+
+      let a = "CBA";
+      let b = "CBDAGE";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
