@@ -1,0 +1,35 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(priorities, location) {
+        //정답은 1 ~ N순위까지 존재한다.
+        let answer = 1;
+        //location을 확인하기위해 배열을 map으로 value, index의 2차배열로 변환
+        let printer = priorities.map((value, index) => [value, index]);
+        while (true) {
+          //가장 앞에 있는 원소를 제거 후 tmp로 반환
+          let tmp = printer.shift();
+          //some함수 : 배열안에 어떤것 하나라도 조건이 만족하지 않으면 false
+          if (printer.some((value) => value[0] > tmp[0])) {
+            //true면 우선순위가 더 높은 것이 배열안에 존재하므로 맨뒤에 삽입
+            printer.push(tmp);
+          } else {
+            //1번째 값이 location 값과 같다면 종료
+            if (tmp[1] === location) {
+              break;
+            } else {
+              //아니면 answer += 1
+              answer += 1;
+            }
+          }
+        }
+
+        return answer;
+      }
+    </script>
+  </body>
+</html>

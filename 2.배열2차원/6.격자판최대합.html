@@ -23,6 +23,8 @@
           sum1 += arr[i][i]; // 대각선
           sum2 += arr[i][n - i - 1]; //역대각선
         }
+        //이건 대각선이 2개밖에 없기 때문에 for문이 끝나면 Math.max 해준다
+        // 위에는 5개의 행열 세트가 존재해서 2차배열 끝나자마자 answer 써준것
         answer = Math.max(answer, sum1, sum2); //셋중에 가장 큰 값을 answer에 넣는다
         return answer;
       }
