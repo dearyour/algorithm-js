@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(times) {
+        //같은시간대면 e가 먼저 s보다 체크되어야함
+        //도착점은 수량체크 안되고 시작점은 수량체크 되기때문에
+        let answer = Number.MIN_SAFE_INTEGER;
+        let T_line = [];
+        for (let x of times) {
+          T_line.push([x[0], "s"]);
+          T_line.push([x[1], "e"]);
+        }
+        T_line.sort((a, b) => {
+          if (a[0] === b[0]) return a[1].charCodeAt() - b[1].charCodeAt();
+          // s와 e를 오름차순해서 e가 먼저앞으로 나오게 // 아스키코드 넘버로 바꾼다
+          else return a[0] - b[0];
+          // 빠른숫자부터 오름차순
+        });
+        let cnt = 0;
+        for (let x of T_line) {
+          if (x[1] === "s") cnt++; //s시작점이면 더하고 e 끝점이라면 뺀다
+          else cnt--;
+          answer = Math.max(answer, cnt);
+        }
+        return answer;
+      }
+
+      let arr = [
+        [14, 18],
+        [12, 15],
+        [15, 20],
+        [20, 30],
+        [5, 14],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
