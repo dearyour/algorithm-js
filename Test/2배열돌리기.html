@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      for (let start = 0; start < rayer; start++) {
+        //레이어의 횟수만큼  start커질수록 사각형 안으로 들어감
+        let rowEnd = N - start - 1; //  배열길이-1하고  레이어  한바퀴 돌떄  레이어 안으로 들어갈수록 시작점은 하나 증가하고 끝점은 하나씩 감소한다
+        let colEnd = R - start - 1; //
+
+        let temp = map[start][start]; //가장 처음 0,0의 원소정보 저장
+
+        for (let i = start; i < colEnd; i++) {
+          map[i][start] = map[i + 1][start];
+        } //위로 올리기 밀기
+        for (let i = start; i < rowEnd; i++) {
+          map[rowEnd][i] = map[rowEnd][i + 1];
+        } //왼쪽으로 밀기
+        for (let i = rowEnd; i > start; i--) {
+          map[i][colEnd] = map[i - 1][colEnd];
+        } // 아래로으로 밀기
+        for (let i = colEnd; i > start; i--) {
+          map[start][i] = map[start][i - 1];
+          //오른쪽으로 밀기
+        }
+        map[start][start + 1] = temp; //가장 처음 0,0  1,1   2,2 ... 저장한 원소를 가장 마지막의 원소저장한다 .
+      }
+    </script>
+  </body>
+</html>
