@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const user_input = prompt("입력해주세요").split(" ");
+      const n = parseInt(user_input[0], 10);
+      const k = parseInt(user_input[1], 10);
+
+      function sol(n, k) {
+        let index = 0;
+        // q에 n만큼의 숫자를 넣어준다.
+        let q = [];
+        for (let i = 0; i < n; i++) {
+          q.push(i + 1);
+        }
+
+        while (q.length > 2) {
+          if (index > q.length - 1) {
+            // 순환하다 index가 q의 길이보다 클 경우에 q.length만큼 빼준다.
+            // [1,2,3,4,5,6] -> 1다음 4가 빠지고 그 다음은 4+3 = 7(index : 6)이 빠져야 하는데
+            // index(현재 빠져야 할 index)가 q.length보다 크므로 q.legnth, 즉 4를 빼준다.
+            // 이걸 마지막 2개가 남을 때까지 반복한다.
+            index -= q.length;
+          }
+
+          q.splice(index, 1);
+          index += k;
+          index -= 1;
+        }
+
+        return q;
+      }
+
+      console.log(sol(n, k));
+    </script>
+  </body>
+</html>
