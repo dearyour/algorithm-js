@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //전체 조합에서 가장 큰 숫자 찾기
+      function solution(chars) {
+        let permute = [];
+
+        const f = (prefix, chars) => {
+          for (let i = 0; i < chars.length; i++) {
+            permute.push(prefix + chars[i]);
+
+            ///// 이아래 if는 생략해도 괜찮을듯,,?
+            if (permute.indexOf(chars[i] + prefix) === -1) {
+              permute.push(chars[i] + prefix);
+            }
+            /////
+            f(prefix + chars[i], chars.slice(i + 1));
+          }
+        };
+
+        f("", chars);
+
+        let result = permute.filter((x) => x.length === len);
+        // len 숫자만큼의 조합만 추출해서 뽑아내기
+        result.sort((a, b) => {
+          return b - a;
+        });
+        //가장 큰 숫자 뽑아냄
+        return result[0];
+      }
+
+      const num = prompt("숫자를 입력하세요").split("");
+      const len = parseInt(prompt("몇 개의 수를 선택하시겠습니까?"), 10);
+      console.log(solution(num));
+    </script>
+  </body>
+</html>
