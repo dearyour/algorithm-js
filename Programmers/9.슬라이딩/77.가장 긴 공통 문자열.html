@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sol(string) {
+        let result = [];
+        for (let i = 1; i < string.length + 1; i++) {
+          for (let j = 0; j < i; j++) {
+            result.push(string.slice(j, j + string.length - i + 1));
+          }
+        }
+        return result;
+      }
+
+      const inputOne = prompt("첫번째 문자열을 입력해주세요.");
+      const inputTwo = prompt("두번째 문자열을 입력해주세요.");
+      const arrayOne = sol(inputOne);
+      const arrayTwo = sol(inputTwo);
+
+      //공통 부분 문자열 찾기- 교집합
+      let intersection = arrayOne.filter((x) => arrayTwo.includes(x));
+
+      //문자열 길이로 내림차순 정렬
+      intersection.sort((a, b) => {
+        return b.length - a.length;
+      });
+
+      console.log(intersection[0].length);
+    </script>
+  </body>
+</html>
