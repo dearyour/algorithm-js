@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, trains, bookings) {
+        let queue = [];
+        // let trainIndex=0;
+        // console.log( trains[++trainIndex][0])
+
+        trains.sort((a, b) => a - b);
+        bookings.sort((a, b) => {
+          if (a[0] === b[0]) return a[1] - b[1];
+          else return a[0] - b[0];
+        });
+
+        console.log(bookings);
+
+        for (let i = 1; i <= n; i++) {
+          for (let train of trains) {
+            for (let booking of bookings) {
+              if (queue.length > train[2]) break;
+              if (train[1] === queue[1] && queue.length <= train[2]) {
+                queue.pop();
+              }
+              if (train[0] === booking[0] && queue.length <= train[2]) {
+                queue.push(booking);
+                console.log(queue);
+              }
+            }
+          }
+        }
+
+        return queue.length + 1;
+      }
+    </script>
+  </body>
+</html>
